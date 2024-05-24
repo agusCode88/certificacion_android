@@ -8,13 +8,11 @@ import kotlinx.coroutines.withContext
 
 class MainRepositoryImpl(private var apiService: MainApiService )  : MainRepository{
 
-    override suspend fun fetcVideoGames(): MutableList<VideoGameResponseItem> {
-
+    override suspend fun fetchVideoGames(): MutableList<VideoGameResponseItem> {
         return withContext(Dispatchers.IO){
             val videoGames = apiService.getAllVideoGames()
-                videoGames
+            videoGames
         }
-
     }
 
 }

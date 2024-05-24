@@ -33,6 +33,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    viewBinding {
+        enable = true
+    }
 }
 
 dependencies {
@@ -47,10 +51,11 @@ dependencies {
     implementation(libs.moshi)
     //Moshi Converter
     implementation (libs.converter.moshi)
-
+    //GsonConverter
     implementation (libs.google.gson)
-
     implementation (libs.converter.gson)
+    //Picasso
+    implementation (libs.picasso)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
