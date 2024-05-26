@@ -16,7 +16,13 @@ class MainViewModel(private val useCase: MainUseCase): ViewModel() {
 
     init {
         viewModelScope.launch {
-            videoGamesList.value = useCase.getAllVideoGames()
+            val videoGames = useCase.getAllVideoGames()
+            if(videoGames.isNotEmpty()){
+                videoGamesList.value = videoGames
+                useCase.saveAllVideoGamesDB(videoGames)
+            }
+            //videoGamesList.value = useCase.getAllVideoGames()
+
         }
     }
 

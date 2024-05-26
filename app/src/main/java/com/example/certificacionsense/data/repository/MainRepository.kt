@@ -5,4 +5,6 @@ import com.example.certificacionsense.data.network.response.VideoGameResponseIte
 
 interface MainRepository {
     suspend fun fetchVideoGames(): MutableList<VideoGameResponseItem>
+    suspend fun saveAllVideoGamesDB(videoGameResponseItem: MutableList<VideoGameResponseItem>)
+
 }

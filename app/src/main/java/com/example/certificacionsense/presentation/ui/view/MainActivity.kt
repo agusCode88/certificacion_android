@@ -10,6 +10,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.certificacionsense.R
+import com.example.certificacionsense.data.local.VideoGameDao
+import com.example.certificacionsense.data.local.VideoGameDataBase
 import com.example.certificacionsense.data.network.api.MainApiService
 import com.example.certificacionsense.data.network.retrofit.RetrofitHelper
 import com.example.certificacionsense.data.repository.MainRepositoryImpl
@@ -31,9 +33,10 @@ class MainActivity : AppCompatActivity() {
 
         // Initialize Retrofit and ApiService
         val apiService = RetrofitHelper.getRetrofit().create(MainApiService::class.java)
+        val database = VideoGameDataBase.getDatabase(application)
 
         // Create Repository and UseCase instances
-        val repository = MainRepositoryImpl(apiService)
+        val repository = MainRepositoryImpl(apiService,database.videoGameDAO())
         val videoGamesUseCase = MainUseCase(repository)
 
         // Pass UseCase to ViewModelFactory
