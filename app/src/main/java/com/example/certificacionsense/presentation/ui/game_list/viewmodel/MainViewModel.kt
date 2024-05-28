@@ -1,9 +1,8 @@
-package com.example.certificacionsense.presentation.ui.viewmodel
+package com.example.certificacionsense.presentation.ui.game_list.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.certificacionsense.data.model.VideoGame
 import com.example.certificacionsense.data.network.response.VideoGameResponseItem
 import com.example.certificacionsense.domain.MainUseCase
 import kotlinx.coroutines.launch

@@ -1,4 +1,4 @@
-package com.example.certificacionsense.presentation.ui.viewmodel
+package com.example.certificacionsense.presentation.ui.game_list.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

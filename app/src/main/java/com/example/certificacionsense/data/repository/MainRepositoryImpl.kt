@@ -21,6 +21,10 @@ class MainRepositoryImpl(
         }
     }
 
+    override suspend fun fetchVideoGameById(idVideoGame: Int): VideoGameResponseItem {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun saveAllVideoGamesDB(videoGameResponseItem: MutableList<VideoGameResponseItem>) {
         return withContext(Dispatchers.IO){
             videoGameDao.insertAllVideoGames(videoGameResponseItem)

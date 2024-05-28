@@ -8,6 +8,10 @@ class MainUseCase(private val repositoryImpl: MainRepositoryImpl) {
         return repositoryImpl.fetchVideoGames()
     }
 
+    suspend fun getVideoGameDetail(idVideoGame: Int): VideoGameResponseItem{
+        return repositoryImpl.fetchVideoGameById(idVideoGame)
+    }
+
     suspend fun saveAllVideoGamesDB(videoGames: MutableList<VideoGameResponseItem>){
         return repositoryImpl.saveAllVideoGamesDB(videoGames)
     }
