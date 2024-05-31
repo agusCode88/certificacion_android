@@ -15,4 +15,12 @@ class MainUseCase(private val repositoryImpl: MainRepositoryImpl) {
     suspend fun saveAllVideoGamesDB(videoGames: MutableList<VideoGameResponseItem>){
         return repositoryImpl.saveAllVideoGamesDB(videoGames)
     }
+
+    suspend fun getAllVideoGamesFromDB(): MutableList<VideoGameResponseItem>{
+        return repositoryImpl.getAllVideoGamesDB()
+    }
+
+    suspend fun getDetailVideoGameFromDB(videoGameId: Int): VideoGameResponseItem{
+        return repositoryImpl.videoGameByIdFromDB(videoGameId)
+    }
 }

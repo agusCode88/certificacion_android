@@ -28,9 +28,23 @@ class MainRepositoryImpl(
         }
     }
 
+    override suspend fun getAllVideoGamesDB(): MutableList<VideoGameResponseItem> {
+       return withContext(Dispatchers.IO){
+           val videoGames = videoGameDao.getAllVideoGames()
+           videoGames
+       }
+    }
+
     override suspend fun saveAllVideoGamesDB(videoGameResponseItem: MutableList<VideoGameResponseItem>) {
         return withContext(Dispatchers.IO){
             videoGameDao.insertAllVideoGames(videoGameResponseItem)
+        }
+    }
+
+    override suspend fun videoGameByIdFromDB(videoGameId: Int): VideoGameResponseItem {
+        return withContext(Dispatchers.IO){
+            val videoGame = videoGameDao.getVideoGameById(videoGameId)
+            videoGame
         }
     }
 

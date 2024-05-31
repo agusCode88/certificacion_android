@@ -3,6 +3,7 @@ package com.example.certificacionsense.presentation.ui.game_list.view
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,25 +40,34 @@ class MainActivity : AppCompatActivity() {
         val viewModelFactory = MainViewModelFactory(videoGamesUseCase)
         val viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 
+        viewModel.getAllVideoGames(this)
+
+        viewModel.idDataLV.observe(this){isData ->
+            if(!isData){
+                Toast.makeText(this, "La aplicación no tiene datos , conéctese a Internet", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+        }
+
         val adapter = MainAdapter()
         binding.vgRecycler.adapter = adapter
         binding.vgRecycler.layoutManager = LinearLayoutManager(this)
-       // binding.vgRecycler.itemAnimator = null
 
         // Observe the ViewModel data
         viewModel.videoGamesLV.observe(this) { it ->
             Log.i("GAMES", it.toString())
             adapter.videoGames = it
-
-            adapter.onItemClickListener = { videoGame ->
-                val idVideoGame = videoGame.id
-                val intent = Intent(this, DetailActivity::class.java).apply {
-                    putExtra("ID_VIDEO_GAME", idVideoGame)
-                }
-                startActivity(intent)
-
-            }
         }
+
+        adapter.onItemClickListener = { videoGame ->
+            val idVideoGame = videoGame.id
+            val intent = Intent(this, DetailActivity::class.java).apply {
+                putExtra("ID_VIDEO_GAME", idVideoGame)
+            }
+            startActivity(intent)
+
+        }
+
 
     }
 }

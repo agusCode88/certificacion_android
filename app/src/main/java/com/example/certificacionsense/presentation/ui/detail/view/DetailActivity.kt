@@ -44,12 +44,14 @@ class DetailActivity : AppCompatActivity() {
         val idVideoGame = intent.getIntExtra("ID_VIDEO_GAME",-1)
         Log.i("DetailActivity", idVideoGame.toString())
 
-        viewModel.getVideoGameByID(idVideoGame)
+        viewModel.getVideoGameById(idVideoGame,this)
 
         viewModel.videoGameLV.observe(this){
             with(it){
                 detailBinding.txtVDName.text = name
                 detailBinding.ratingBar.rating = rating.toFloat()
+                detailBinding.txtRealeased.text = released
+                detailBinding.txtTop.text = metacritic.toString()
                 Picasso
                     .get()
                     .load(backgroundImage)
