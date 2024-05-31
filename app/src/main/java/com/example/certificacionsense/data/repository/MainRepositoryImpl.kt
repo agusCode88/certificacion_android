@@ -22,7 +22,10 @@ class MainRepositoryImpl(
     }
 
     override suspend fun fetchVideoGameById(idVideoGame: Int): VideoGameResponseItem {
-        TODO("Not yet implemented")
+        return withContext(Dispatchers.IO){
+            val videoGame = apiService.getVideoGameById(idVideoGame)
+            videoGame
+        }
     }
 
     override suspend fun saveAllVideoGamesDB(videoGameResponseItem: MutableList<VideoGameResponseItem>) {

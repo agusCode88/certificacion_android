@@ -14,10 +14,10 @@ class DetailViewModel(private val videoGamesUseCase: MainUseCase): ViewModel() {
     val videoGameLV: LiveData<VideoGameResponseItem>
         get() = _videoGameById
 
-
-    fun getVideoGameByID(videoVideoGame: Int){
-        viewModelScope.launch {
-            videoGamesUseCase.getVideoGameDetail(videoVideoGame)
+    fun getVideoGameByID(idVideoGame: Int) {
+         viewModelScope.launch {
+            val videoGame = videoGamesUseCase.getVideoGameDetail(idVideoGame)
+            _videoGameById.value = videoGame
         }
     }
 

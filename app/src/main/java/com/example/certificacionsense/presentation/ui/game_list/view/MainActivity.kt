@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.videoGamesLV.observe(this) { it ->
             Log.i("GAMES", it.toString())
             adapter.videoGames = it
+
             adapter.onItemClickListener = { videoGame ->
                 val idVideoGame = videoGame.id
                 val intent = Intent(this, DetailActivity::class.java).apply {
