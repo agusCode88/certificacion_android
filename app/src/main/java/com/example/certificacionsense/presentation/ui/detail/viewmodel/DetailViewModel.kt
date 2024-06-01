@@ -16,11 +16,15 @@ class DetailViewModel(private val videoGamesUseCase: MainUseCase): ViewModel() {
     val videoGameLV: MutableLiveData<VideoGameResponseItem>
         get() = _videoGameById
 
+    private val _videoGameByIdForEmail = MutableLiveData<VideoGameResponseItem>()
+    val videoGameLVEmail: MutableLiveData<VideoGameResponseItem>
+        get() = _videoGameByIdForEmail
 
-    fun getVideoGameByID(idVideoGame: Int) {
+
+    fun getVideoGameByIDSendEmail(idVideoGame: Int) {
          viewModelScope.launch {
-            val videoGame = videoGamesUseCase.getVideoGameDetail(idVideoGame)
-            _videoGameById.value = videoGame
+             val videoGame = videoGamesUseCase.getDetailVideoGameFromDB(idVideoGame)
+             _videoGameByIdForEmail.value = videoGame
         }
     }
 
